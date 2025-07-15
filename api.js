@@ -1,5 +1,5 @@
 // API functions for server communication
-const API_BASE = 'http://localhost:3000/api';
+const API_BASE = '/api';
 
 class ServerDatabase {
     constructor() {
