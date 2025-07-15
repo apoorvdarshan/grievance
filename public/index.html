@@ -1,219 +1,311 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Grievance.love - Relationship Complaint Portal | Send Love Letters & Grievances to Your Partner</title>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💌</text></svg>">
-    <link rel="shortcut icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💌</text></svg>">
-    <link rel="stylesheet" href="style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Grievance.love - Relationship Complaint Portal | Send Love Letters &
+      Grievances to Your Partner
+    </title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💌</text></svg>"
+    />
+    <link
+      rel="shortcut icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💌</text></svg>"
+    />
+    <link rel="stylesheet" href="style.css" />
     <script src="api-vercel.js"></script>
-</head>
-<body>
+    <script>
+      window.va =
+        window.va ||
+        function () {
+          (window.vaq = window.vaq || []).push(arguments);
+        };
+    </script>
+    <script defer src="/_vercel/insights/script.js"></script>
+  </head>
+  <body>
     <div class="container">
-        <!-- Login Page -->
-        <div id="loginPage" class="page active">
-            <div class="card">
-                <div class="header">
-                    <h1>=� grievance.love</h1>
-                    <p class="tagline">For when your partner needs a formal complaint...</p>
-                </div>
-                
-                <form id="loginForm" class="form">
-                    <div class="form-group">
-                        <label for="username">Username</label>
-                        <input type="text" id="username" name="username" placeholder="your_frustrated_self" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="password">Password</label>
-                        <input type="password" id="password" name="password" placeholder="""""""""" required>
-                    </div>
-                    
-                    <button type="submit" class="btn btn-primary">
-                        Enter Complaint Department =�
-                    </button>
-                </form>
-                
-                <div class="footer">
-                    <p>New to complaining? <a href="#" onclick="showDemo()">Take a tour</a></p>
-                    <p>Don't have an account? <a href="#" onclick="showRegisterPage()">Register here</a></p>
-                    <p>Shoutout to <a href="https://www.instagram.com/kawaljeets_" target="_blank">Kawal</a> & <a href="https://www.instagram.com/surreal.khushiii" target="_blank">Khushi</a> for being so cute it gave me this idea 💖</p>
-                </div>
-            </div>
-        </div>
+      <!-- Login Page -->
+      <div id="loginPage" class="page active">
+        <div class="card">
+          <div class="header">
+            <h1>=� grievance.love</h1>
+            <p class="tagline">
+              For when your partner needs a formal complaint...
+            </p>
+          </div>
 
-        <!-- Complaint Form Page -->
-        <div id="complaintPage" class="page">
-            <div class="card">
-                <div class="header">
-                    <h1>=� File Your Grievance</h1>
-                    <p class="tagline">Let it all out... we're here to listen</p>
-                </div>
-                
-                <form id="complaintForm" class="form">
-                    <div class="form-group">
-                        <label for="partnerName">Send To (Username)</label>
-                        <input type="text" id="partnerName" name="partnerName" placeholder="Enter their username..." required>
-                        <small>This will send the grievance directly to their inbox!</small>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="mood">Current Mood</label>
-                        <select id="mood" name="mood" required>
-                            <option value="">Select your vibe...</option>
-                            <option value="annoyed">=$ Annoyed</option>
-                            <option value="frustrated">=  Frustrated</option>
-                            <option value="disappointed">= Disappointed</option>
-                            <option value="confused">> Confused</option>
-                            <option value="hangry">= Hangry</option>
-                            <option value="petty">= Feeling Petty</option>
-                            <option value="dramatic"><� Being Dramatic</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="grievance">Your Grievance</label>
-                        <textarea id="grievance" name="grievance" rows="6" 
-                                placeholder="Dear Relationship Court,&#10;&#10;I hereby formally complain that my partner...&#10;&#10;Exhibit A: They left dishes in the sink AGAIN&#10;Exhibit B: They said 'fine' when clearly nothing is fine&#10;&#10;I rest my case." required></textarea>
-                    </div>
-                    
-                    
-                    <button type="submit" class="btn btn-primary">
-                        Submit Complaint =�
-                    </button>
-                    
-                    <button type="button" class="btn btn-secondary" onclick="showLoginPage()">
-                        � Go Back
-                    </button>
-                </form>
+          <form id="loginForm" class="form">
+            <div class="form-group">
+              <label for="username">Username</label>
+              <input
+                type="text"
+                id="username"
+                name="username"
+                placeholder="your_frustrated_self"
+                required
+              />
             </div>
-        </div>
 
-        <!-- Thank You Page -->
-        <div id="thankYouPage" class="page">
-            <div class="card">
-                <div class="header">
-                    <h1> Complaint Received!</h1>
-                    <div class="success-icon">=�</div>
-                </div>
-                
-                <div class="thank-you-content">
-                    <p class="main-message">Your grievance has been officially documented and sent to our relationship mediation team.</p>
-                    
-                    <div class="info-box">
-                        <h3>What happens next?</h3>
-                        <ul>
-                            <li>=� Your complaint will be reviewed within 24 hours</li>
-                            <li>=� We'll get back to you soon with resolution options</li>
-                            <li>=J Peace may be restored to your relationship</li>
-                            <li><U In the meantime, maybe order pizza together?</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="reference-number">
-                        <p><strong>Reference #:</strong> <span id="referenceNumber">LOVE-2024-001</span></p>
-                    </div>
-                    
-                    <button class="btn btn-primary" onclick="fileAnotherComplaint()">
-                        File Another Complaint =�
-                    </button>
-                    
-                    <button class="btn btn-secondary" onclick="showLoginPage()">
-                        � Back to Login
-                    </button>
-                </div>
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input type="password" id="password" name="password"
+              placeholder="""""""""" required>
             </div>
-        </div>
 
-        <!-- Registration Page -->
-        <div id="registerPage" class="page">
-            <div class="card">
-                <div class="header">
-                    <h1>📝 Join the Portal</h1>
-                    <p class="tagline">Create your complaint account...</p>
-                </div>
-                
-                <form id="registerForm" class="form">
-                    <div class="form-group">
-                        <label for="regUsername">Choose Username</label>
-                        <input type="text" id="regUsername" name="regUsername" placeholder="unique_complainer" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="regPassword">Password</label>
-                        <input type="password" id="regPassword" name="regPassword" placeholder="••••••••" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="confirmPassword">Confirm Password</label>
-                        <input type="password" id="confirmPassword" name="confirmPassword" placeholder="••••••••" required>
-                    </div>
-                    
-                    <button type="submit" class="btn btn-primary">
-                        Create Account 🎉
-                    </button>
-                    
-                    <button type="button" class="btn btn-secondary" onclick="showLoginPage()">
-                        ← Back to Login
-                    </button>
-                </form>
-            </div>
-        </div>
+            <button type="submit" class="btn btn-primary">
+              Enter Complaint Department =�
+            </button>
+          </form>
 
-        <!-- Inbox Page -->
-        <div id="inboxPage" class="page">
-            <div class="card">
-                <div class="header">
-                    <h1>📬 Your Inbox</h1>
-                    <p class="tagline">Messages from your relationship partners...</p>
-                    <div class="user-info">
-                        <span>Logged in as: <strong id="currentUsername"></strong></span>
-                        <button class="btn btn-small" onclick="logout()">Logout</button>
-                    </div>
-                </div>
-                
-                <div id="messagesList" class="messages-container">
-                    <!-- Messages will be loaded here -->
-                </div>
-                
-                <div class="inbox-actions">
-                    <button class="btn btn-primary" onclick="showComplaintPage()">
-                        Send New Grievance 📝
-                    </button>
-                </div>
-            </div>
+          <div class="footer">
+            <p>
+              New to complaining?
+              <a href="#" onclick="showDemo()">Take a tour</a>
+            </p>
+            <p>
+              Don't have an account?
+              <a href="#" onclick="showRegisterPage()">Register here</a>
+            </p>
+            <p>
+              Shoutout to
+              <a href="https://www.instagram.com/kawaljeets_" target="_blank"
+                >Kawal</a
+              >
+              &
+              <a
+                href="https://www.instagram.com/surreal.khushiii"
+                target="_blank"
+                >Khushi</a
+              >
+              for being so cute it gave me this idea 💖
+            </p>
+          </div>
         </div>
+      </div>
+
+      <!-- Complaint Form Page -->
+      <div id="complaintPage" class="page">
+        <div class="card">
+          <div class="header">
+            <h1>=� File Your Grievance</h1>
+            <p class="tagline">Let it all out... we're here to listen</p>
+          </div>
+
+          <form id="complaintForm" class="form">
+            <div class="form-group">
+              <label for="partnerName">Send To (Username)</label>
+              <input
+                type="text"
+                id="partnerName"
+                name="partnerName"
+                placeholder="Enter their username..."
+                required
+              />
+              <small
+                >This will send the grievance directly to their inbox!</small
+              >
+            </div>
+
+            <div class="form-group">
+              <label for="mood">Current Mood</label>
+              <select id="mood" name="mood" required>
+                <option value="">Select your vibe...</option>
+                <option value="annoyed">=$ Annoyed</option>
+                <option value="frustrated">= Frustrated</option>
+                <option value="disappointed">= Disappointed</option>
+                <option value="confused">> Confused</option>
+                <option value="hangry">= Hangry</option>
+                <option value="petty">= Feeling Petty</option>
+                <option value="dramatic"><� Being Dramatic</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="grievance">Your Grievance</label>
+              <textarea
+                id="grievance"
+                name="grievance"
+                rows="6"
+                placeholder="Dear Relationship Court,&#10;&#10;I hereby formally complain that my partner...&#10;&#10;Exhibit A: They left dishes in the sink AGAIN&#10;Exhibit B: They said 'fine' when clearly nothing is fine&#10;&#10;I rest my case."
+                required
+              ></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary">
+              Submit Complaint =�
+            </button>
+
+            <button
+              type="button"
+              class="btn btn-secondary"
+              onclick="showLoginPage()"
+            >
+              � Go Back
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Thank You Page -->
+      <div id="thankYouPage" class="page">
+        <div class="card">
+          <div class="header">
+            <h1> Complaint Received!</h1>
+            <div class="success-icon">=�</div>
+          </div>
+
+          <div class="thank-you-content">
+            <p class="main-message">
+              Your grievance has been officially documented and sent to our
+              relationship mediation team.
+            </p>
+
+            <div class="info-box">
+              <h3>What happens next?</h3>
+              <ul>
+                <li>=� Your complaint will be reviewed within 24 hours</li>
+                <li>=� We'll get back to you soon with resolution options</li>
+                <li>=J Peace may be restored to your relationship</li>
+                <li><U In the meantime, maybe order pizza together?</li>
+              </ul>
+            </div>
+
+            <div class="reference-number">
+              <p>
+                <strong>Reference #:</strong>
+                <span id="referenceNumber">LOVE-2024-001</span>
+              </p>
+            </div>
+
+            <button class="btn btn-primary" onclick="fileAnotherComplaint()">
+              File Another Complaint =�
+            </button>
+
+            <button class="btn btn-secondary" onclick="showLoginPage()">
+              � Back to Login
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Registration Page -->
+      <div id="registerPage" class="page">
+        <div class="card">
+          <div class="header">
+            <h1>📝 Join the Portal</h1>
+            <p class="tagline">Create your complaint account...</p>
+          </div>
+
+          <form id="registerForm" class="form">
+            <div class="form-group">
+              <label for="regUsername">Choose Username</label>
+              <input
+                type="text"
+                id="regUsername"
+                name="regUsername"
+                placeholder="unique_complainer"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="regPassword">Password</label>
+              <input
+                type="password"
+                id="regPassword"
+                name="regPassword"
+                placeholder="••••••••"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="confirmPassword">Confirm Password</label>
+              <input
+                type="password"
+                id="confirmPassword"
+                name="confirmPassword"
+                placeholder="••••••••"
+                required
+              />
+            </div>
+
+            <button type="submit" class="btn btn-primary">
+              Create Account 🎉
+            </button>
+
+            <button
+              type="button"
+              class="btn btn-secondary"
+              onclick="showLoginPage()"
+            >
+              ← Back to Login
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Inbox Page -->
+      <div id="inboxPage" class="page">
+        <div class="card">
+          <div class="header">
+            <h1>📬 Your Inbox</h1>
+            <p class="tagline">Messages from your relationship partners...</p>
+            <div class="user-info">
+              <span>Logged in as: <strong id="currentUsername"></strong></span>
+              <button class="btn btn-small" onclick="logout()">Logout</button>
+            </div>
+          </div>
+
+          <div id="messagesList" class="messages-container">
+            <!-- Messages will be loaded here -->
+          </div>
+
+          <div class="inbox-actions">
+            <button class="btn btn-primary" onclick="showComplaintPage()">
+              Send New Grievance 📝
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- Custom Dialog/Notification System -->
     <div id="notification" class="notification hidden">
-        <div class="notification-content">
-            <span id="notificationText"></span>
-            <button id="notificationClose" class="notification-close">&times;</button>
-        </div>
+      <div class="notification-content">
+        <span id="notificationText"></span>
+        <button id="notificationClose" class="notification-close">
+          &times;
+        </button>
+      </div>
     </div>
 
     <div id="dialog" class="dialog-overlay hidden">
-        <div class="dialog">
-            <div class="dialog-header">
-                <h3 id="dialogTitle"></h3>
-            </div>
-            <div class="dialog-body">
-                <p id="dialogMessage"></p>
-            </div>
-            <div class="dialog-actions">
-                <button id="dialogConfirm" class="btn btn-primary">OK</button>
-                <button id="dialogCancel" class="btn btn-secondary hidden">Cancel</button>
-            </div>
+      <div class="dialog">
+        <div class="dialog-header">
+          <h3 id="dialogTitle"></h3>
         </div>
+        <div class="dialog-body">
+          <p id="dialogMessage"></p>
+        </div>
+        <div class="dialog-actions">
+          <button id="dialogConfirm" class="btn btn-primary">OK</button>
+          <button id="dialogCancel" class="btn btn-secondary hidden">
+            Cancel
+          </button>
+        </div>
+      </div>
     </div>
 
     <!-- Copyright Footer -->
     <footer class="copyright-footer">
-        <p>&copy; 2025 Apoorv Darshan. All rights reserved.</p>
+      <p>&copy; 2025 Apoorv Darshan. All rights reserved.</p>
     </footer>
 
     <script src="script-vercel.js"></script>
-</body>
+  </body>
 </html>
