@@ -11,6 +11,15 @@ yarn-error.log*
 .env.test.local
 .env.production.local
 
+# Local development files (keep for localhost, ignore for Vercel)
+# Comment out the next line if you want to deploy these to Vercel
+# server.js
+# api.js
+# script.js
+
+# Vercel build output
+.vercel
+
 # Database files (if using local storage)
 data/
 data/*.json
