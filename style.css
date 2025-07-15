@@ -389,26 +389,36 @@ textarea {
 }
 
 .message-item {
-    background: linear-gradient(145deg, rgba(255, 240, 245, 0.8) 0%, rgba(255, 228, 238, 0.9) 100%);
-    border: 1px solid rgba(255, 182, 193, 0.3);
-    border-radius: 15px;
-    padding: 15px;
-    margin-bottom: 12px;
+    background: linear-gradient(145deg, rgba(255, 240, 245, 0.9) 0%, rgba(255, 228, 238, 0.95) 100%);
+    border: 2px solid rgba(255, 182, 193, 0.4);
+    border-radius: 20px;
+    padding: 20px;
+    margin-bottom: 15px;
     cursor: pointer;
     transition: all 0.3s ease;
     position: relative;
+    box-shadow: 0 8px 25px rgba(255, 105, 180, 0.12);
+    backdrop-filter: blur(10px);
 }
 
 .message-item:hover {
-    background: linear-gradient(145deg, rgba(255, 228, 238, 0.9) 0%, rgba(255, 210, 225, 0.95) 100%);
-    transform: translateX(5px);
-    box-shadow: 0 5px 20px rgba(255, 105, 180, 0.2);
+    background: linear-gradient(145deg, rgba(255, 228, 238, 0.95) 0%, rgba(255, 210, 225, 1) 100%);
+    transform: translateY(-3px) translateX(3px);
+    box-shadow: 0 12px 35px rgba(255, 105, 180, 0.25);
+    border-color: rgba(255, 105, 180, 0.6);
 }
 
 .message-item.unread {
     border-color: #ff69b4;
     background: linear-gradient(145deg, rgba(255, 230, 240, 0.95) 0%, rgba(255, 215, 235, 1) 100%);
-    box-shadow: 0 4px 15px rgba(255, 105, 180, 0.15);
+    box-shadow: 0 10px 30px rgba(255, 105, 180, 0.2);
+    border-width: 2px;
+    animation: gentlePulse 3s ease-in-out infinite;
+}
+
+@keyframes gentlePulse {
+    0%, 100% { box-shadow: 0 10px 30px rgba(255, 105, 180, 0.2); }
+    50% { box-shadow: 0 15px 40px rgba(255, 105, 180, 0.3); }
 }
 
 .message-item.unread::before {
@@ -429,35 +439,52 @@ textarea {
 }
 
 .message-from {
+    font-family: 'Dancing Script', cursive;
     font-weight: 600;
-    color: #ad1457;
-    font-size: 1rem;
+    color: #d63384;
+    font-size: 1.3rem;
+    text-shadow: 1px 1px 2px rgba(255, 105, 180, 0.2);
 }
 
 .message-time {
-    font-size: 0.8rem;
+    font-size: 0.85rem;
     color: #c2185b;
-    opacity: 0.8;
+    opacity: 0.9;
+    font-weight: 500;
+    background: rgba(255, 192, 203, 0.2);
+    padding: 3px 8px;
+    border-radius: 10px;
+    font-family: 'Poppins', sans-serif;
 }
 
 .message-subject {
-    font-weight: 500;
-    color: #880e4f;
-    margin-bottom: 5px;
-    font-size: 0.95rem;
+    font-weight: 600;
+    color: #ad1457;
+    margin-bottom: 8px;
+    font-size: 1.05rem;
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.4;
 }
 
 .message-preview {
-    color: #ad1457;
-    font-size: 0.9rem;
-    line-height: 1.4;
-    opacity: 0.9;
+    color: #6a1b3a;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    opacity: 0.85;
+    font-family: 'Poppins', sans-serif;
+    font-style: italic;
+    margin-top: 5px;
 }
 
 .mood-indicator {
     display: inline-block;
-    margin-left: 8px;
-    font-size: 1.1rem;
+    margin-left: 10px;
+    font-size: 1.3rem;
+    background: rgba(255, 255, 255, 0.6);
+    padding: 3px 8px;
+    border-radius: 15px;
+    border: 1px solid rgba(255, 182, 193, 0.3);
+    box-shadow: 0 2px 8px rgba(255, 105, 180, 0.1);
 }
 
 /* Notification styles */
@@ -887,6 +914,102 @@ textarea {
     display: block;
     font-size: 1rem;
     line-height: 1.5;
+}
+
+/* Actual message styling from JavaScript */
+.message {
+    background: linear-gradient(145deg, rgba(255, 240, 245, 0.9) 0%, rgba(255, 228, 238, 0.95) 100%);
+    border: 2px solid rgba(255, 182, 193, 0.4);
+    border-radius: 20px;
+    padding: 20px;
+    margin-bottom: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    box-shadow: 0 8px 25px rgba(255, 105, 180, 0.12);
+    backdrop-filter: blur(10px);
+}
+
+.message:hover {
+    background: linear-gradient(145deg, rgba(255, 228, 238, 0.95) 0%, rgba(255, 210, 225, 1) 100%);
+    transform: translateY(-3px) translateX(3px);
+    box-shadow: 0 12px 35px rgba(255, 105, 180, 0.25);
+    border-color: rgba(255, 105, 180, 0.6);
+}
+
+.message.unread {
+    border-color: #ff69b4;
+    background: linear-gradient(145deg, rgba(255, 230, 240, 0.95) 0%, rgba(255, 215, 235, 1) 100%);
+    box-shadow: 0 10px 30px rgba(255, 105, 180, 0.2);
+    border-width: 2px;
+    animation: gentlePulse 3s ease-in-out infinite;
+}
+
+.message.unread::before {
+    content: '💕';
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 1.2rem;
+    animation: heartBeat 1.5s ease-in-out infinite;
+}
+
+.sender {
+    font-family: 'Dancing Script', cursive;
+    font-weight: 600;
+    color: #d63384;
+    font-size: 1.3rem;
+    text-shadow: 1px 1px 2px rgba(255, 105, 180, 0.2);
+}
+
+.timestamp {
+    font-size: 0.85rem;
+    color: #c2185b;
+    opacity: 0.9;
+    font-weight: 500;
+    background: rgba(255, 192, 203, 0.2);
+    padding: 3px 8px;
+    border-radius: 10px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.message-mood {
+    font-weight: 600;
+    color: #ad1457;
+    margin: 8px 0;
+    font-size: 1.05rem;
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.4;
+}
+
+.message-content {
+    color: #6a1b3a;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    opacity: 0.85;
+    font-family: 'Poppins', sans-serif;
+    font-style: italic;
+    margin-top: 5px;
+    background: rgba(255, 255, 255, 0.3);
+    padding: 10px;
+    border-radius: 10px;
+    border-left: 3px solid #ff69b4;
+}
+
+.new-badge {
+    position: absolute;
+    top: -8px;
+    left: 15px;
+    background: linear-gradient(145deg, #ff1493, #dc143c);
+    color: white;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 15px rgba(255, 20, 147, 0.4);
+    animation: gentleBounce 2s ease-in-out infinite;
 }
 
 /* Message content styling when expanded */
