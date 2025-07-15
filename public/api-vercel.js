@@ -74,7 +74,7 @@ class ServerDatabase {
 
     async getMessagesForUser(username) {
         try {
-            const response = await fetch(`${API_BASE}/messages/${username}`);
+            const response = await fetch(`${API_BASE}/get-messages?username=${username}`);
             const messages = await response.json();
             return messages;
         } catch (error) {

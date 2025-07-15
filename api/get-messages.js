@@ -1,4 +1,4 @@
-const { getMessagesForUser, markMessageAsRead, getUnreadCount } = require('../../lib/mongodb-vercel');
+const { getMessagesForUser, markMessageAsRead } = require('../lib/mongodb-vercel');
 
 module.exports = async function handler(req, res) {
     // Enable CORS
@@ -13,6 +13,10 @@ module.exports = async function handler(req, res) {
     
     const { username } = req.query;
     
+    if (!username) {
+        return res.status(400).json({ error: 'Username query parameter is required' });
+    }
+    
     if (req.method === 'GET') {
         // Get messages for user
         try {
@@ -23,7 +27,7 @@ module.exports = async function handler(req, res) {
             res.status(500).json({ error: 'Internal server error' });
         }
     } else if (req.method === 'PATCH') {
-        // Mark message as read (when messageId is in the path)
+        // Mark message as read
         try {
             const messageId = req.body.messageId;
             await markMessageAsRead(messageId);
