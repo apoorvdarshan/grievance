@@ -99,7 +99,7 @@ class ServerDatabase {
 
     async getUnreadCount(username) {
         try {
-            const response = await fetch(`${API_BASE}/messages/${username}/unread-count`);
+            const response = await fetch(`${API_BASE}/unread-count?username=${username}`);
             const data = await response.json();
             return data.unreadCount;
         } catch (error) {

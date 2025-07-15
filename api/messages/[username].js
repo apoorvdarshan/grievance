@@ -14,18 +14,6 @@ module.exports = async function handler(req, res) {
     const { username } = req.query;
     
     if (req.method === 'GET') {
-        // Check if requesting unread count
-        if (req.url.includes('/unread-count')) {
-            try {
-                const unreadCount = await getUnreadCount(username.toLowerCase());
-                res.json({ unreadCount });
-            } catch (error) {
-                console.error('Error fetching unread count:', error);
-                res.status(500).json({ error: 'Internal server error' });
-            }
-            return;
-        }
-        
         // Get messages for user
         try {
             const userMessages = await getMessagesForUser(username.toLowerCase());
