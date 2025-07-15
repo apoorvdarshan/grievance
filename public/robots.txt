@@ -1,0 +1,13 @@
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://grievance.love/sitemap.xml
+
+# Disallow admin or sensitive paths (if any exist in future)
+# Disallow: /admin/
+# Disallow: /api/
+
+# Allow all search engines to crawl
+# This is a public relationship grievance portal
+# Contact: ad13dtu@gmail.com
