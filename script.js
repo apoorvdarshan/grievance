@@ -184,6 +184,11 @@ document.addEventListener('DOMContentLoaded', function() {
         
         const username = document.getElementById('username').value;
         const password = document.getElementById('password').value;
+        const submitButton = loginForm.querySelector('button[type="submit"]');
+        
+        // Show loading animation
+        showButtonLoading(submitButton, 'hearts');
+        showFormLoading(loginForm);
         
         try {
             await db.loginUser(username, password);
@@ -199,6 +204,10 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         } catch (error) {
             showDialog('Login Failed', error.message + ' 🚫');
+        } finally {
+            // Hide loading animation
+            hideButtonLoading(submitButton);
+            hideFormLoading(loginForm);
         }
     });
     
@@ -307,3 +316,72 @@ document.addEventListener('keydown', function(e) {
         easterEggCounter++;
     }
 });
+
+// Loading Animation Functions
+function showButtonLoading(button, type = 'spinner') {
+    if (!button) return;
+    
+    // Store original text
+    button.setAttribute('data-original-text', button.textContent);
+    
+    // Add loading class and type
+    button.classList.add('loading');
+    if (type !== 'spinner') {
+        button.classList.add(type);
+    }
+    
+    // Disable button
+    button.disabled = true;
+}
+
+function hideButtonLoading(button) {
+    if (!button) return;
+    
+    // Remove loading classes
+    button.classList.remove('loading', 'hearts', 'dots', 'pulse');
+    
+    // Restore original text
+    const originalText = button.getAttribute('data-original-text');
+    if (originalText) {
+        button.textContent = originalText;
+        button.removeAttribute('data-original-text');
+    }
+    
+    // Enable button
+    button.disabled = false;
+}
+
+function showFormLoading(form) {
+    if (!form) return;
+    form.classList.add('form-loading');
+}
+
+function hideFormLoading(form) {
+    if (!form) return;
+    form.classList.remove('form-loading');
+}
+
+function showLoadingOverlay(text = 'Processing your request...', subtext = 'Please wait while we work our magic 💕') {
+    let overlay = document.querySelector('.loading-overlay');
+    if (!overlay) {
+        overlay = document.createElement('div');
+        overlay.className = 'loading-overlay';
+        overlay.innerHTML = `
+            <div class="loading-content">
+                <div class="loading-hearts">💕💖💗</div>
+                <div class="loading-text">${text}</div>
+                <div class="loading-subtext">${subtext}</div>
+            </div>
+        `;
+        document.body.appendChild(overlay);
+    }
+    
+    overlay.classList.add('active');
+}
+
+function hideLoadingOverlay() {
+    const overlay = document.querySelector('.loading-overlay');
+    if (overlay) {
+        overlay.classList.remove('active');
+    }
+}

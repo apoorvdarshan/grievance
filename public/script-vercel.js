@@ -184,6 +184,11 @@ document.addEventListener('DOMContentLoaded', function() {
         
         const username = document.getElementById('username').value;
         const password = document.getElementById('password').value;
+        const submitButton = loginForm.querySelector('button[type="submit"]');
+        
+        // Show loading animation
+        showButtonLoading(submitButton, 'hearts');
+        showFormLoading(loginForm);
         
         try {
             await db.loginUser(username, password);
@@ -199,6 +204,10 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         } catch (error) {
             showDialog('Login Failed', error.message + ' 🚫');
+        } finally {
+            // Hide loading animation
+            hideButtonLoading(submitButton);
+            hideFormLoading(loginForm);
         }
     });
     
@@ -208,11 +217,16 @@ document.addEventListener('DOMContentLoaded', function() {
         const username = document.getElementById('regUsername').value;
         const password = document.getElementById('regPassword').value;
         const confirmPassword = document.getElementById('confirmPassword').value;
+        const submitButton = registerForm.querySelector('button[type="submit"]');
         
         if (password !== confirmPassword) {
             showDialog('Registration Error', 'Passwords do not match! 🔐');
             return;
         }
+        
+        // Show loading animation
+        showButtonLoading(submitButton, 'pulse');
+        showFormLoading(registerForm);
         
         try {
             await db.registerUser(username, password);
@@ -223,6 +237,10 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         } catch (error) {
             showDialog('Error', error.message + ' 🚫');
+        } finally {
+            // Hide loading animation
+            hideButtonLoading(submitButton);
+            hideFormLoading(registerForm);
         }
     });
     
@@ -241,11 +259,17 @@ document.addEventListener('DOMContentLoaded', function() {
         const mood = document.getElementById('mood').value;
         const grievance = document.getElementById('grievance').value;
         const urgent = false;
+        const submitButton = complaintForm.querySelector('button[type="submit"]');
         
         if (!recipientUsername.trim() || !mood || !grievance.trim()) {
             showDialog('Missing Information', 'Please fill in all required fields! We need the full story! 📋');
             return;
         }
+        
+        // Show loading animation
+        showButtonLoading(submitButton, 'dots');
+        showFormLoading(complaintForm);
+        showLoadingOverlay('Sending your grievance...', 'Delivering your message with love 💌');
         
         try {
             const messageId = await db.sendMessage(
@@ -275,6 +299,11 @@ document.addEventListener('DOMContentLoaded', function() {
             
         } catch (error) {
             showDialog('Error', error.message + ' 🚫');
+        } finally {
+            // Hide loading animation
+            hideButtonLoading(submitButton);
+            hideFormLoading(complaintForm);
+            hideLoadingOverlay();
         }
     });
     
@@ -307,3 +336,72 @@ document.addEventListener('keydown', function(e) {
         easterEggCounter++;
     }
 });
+
+// Loading Animation Functions
+function showButtonLoading(button, type = 'spinner') {
+    if (!button) return;
+    
+    // Store original text
+    button.setAttribute('data-original-text', button.textContent);
+    
+    // Add loading class and type
+    button.classList.add('loading');
+    if (type !== 'spinner') {
+        button.classList.add(type);
+    }
+    
+    // Disable button
+    button.disabled = true;
+}
+
+function hideButtonLoading(button) {
+    if (!button) return;
+    
+    // Remove loading classes
+    button.classList.remove('loading', 'hearts', 'dots', 'pulse');
+    
+    // Restore original text
+    const originalText = button.getAttribute('data-original-text');
+    if (originalText) {
+        button.textContent = originalText;
+        button.removeAttribute('data-original-text');
+    }
+    
+    // Enable button
+    button.disabled = false;
+}
+
+function showFormLoading(form) {
+    if (!form) return;
+    form.classList.add('form-loading');
+}
+
+function hideFormLoading(form) {
+    if (!form) return;
+    form.classList.remove('form-loading');
+}
+
+function showLoadingOverlay(text = 'Processing your request...', subtext = 'Please wait while we work our magic 💕') {
+    let overlay = document.querySelector('.loading-overlay');
+    if (!overlay) {
+        overlay = document.createElement('div');
+        overlay.className = 'loading-overlay';
+        overlay.innerHTML = `
+            <div class="loading-content">
+                <div class="loading-hearts">💕💖💗</div>
+                <div class="loading-text">${text}</div>
+                <div class="loading-subtext">${subtext}</div>
+            </div>
+        `;
+        document.body.appendChild(overlay);
+    }
+    
+    overlay.classList.add('active');
+}
+
+function hideLoadingOverlay() {
+    const overlay = document.querySelector('.loading-overlay');
+    if (overlay) {
+        overlay.classList.remove('active');
+    }
+}
