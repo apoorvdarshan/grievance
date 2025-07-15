@@ -196,7 +196,12 @@ app.get('/', (req, res) => {
 app.listen(PORT, () => {
     console.log(`🚀 Grievance Portal server running at http://localhost:${PORT}`);
     console.log(`📊 Data stored in: MongoDB Atlas`);
-    console.log(`🔗 Connect your MongoDB URI in environment variables`);
+    console.log(`🔗 MongoDB URI loaded:`, process.env.MONGODB_URI ? 'YES' : 'NO');
+    if (process.env.MONGODB_URI) {
+        // Hide password in logs
+        const uri = process.env.MONGODB_URI.replace(/:([^@]+)@/, ':***@');
+        console.log(`📋 Connection string: ${uri}`);
+    }
 });
 
 // Handle graceful shutdown
