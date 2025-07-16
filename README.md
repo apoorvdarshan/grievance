@@ -5,6 +5,13 @@ A romantic relationship complaint portal where couples can send cute grievances 
 ## 🌐 Live Website
 **[grievance.love](https://grievance.love)**
 
+## 📸 Preview
+<div align="center">
+  
+https://github.com/user-attachments/assets/9a10f953-89a8-4322-8147-6b970f86c11e
+
+</div>
+
 ## ✨ Features
 - Beautiful romantic pink theme with smooth animations
 - User registration and login system
